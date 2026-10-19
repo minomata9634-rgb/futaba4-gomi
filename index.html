@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff6e8">
+  <meta name="description" content="品川区二葉4丁目向け、ごみ収集日と分別を確認する個人用アプリ">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <title>二葉4丁目・ゴミ出しコンシェルジュ</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">🗑️</div>
+    <div><p class="eyebrow">SHINAGAWA · FUTABA 4</p><h1>ゴミ出しコンシェルジュ</h1></div>
+  </header>
+  <main>
+    <section id="home" class="screen active">
+      <div class="date-line"><span id="today-date"></span><span class="area-pill">品川区 二葉4丁目</span></div>
+      <article class="hero-card">
+        <p class="eyebrow">TODAY'S PICKUP</p>
+        <h2 id="today-title">今日出せるごみを確認中…</h2>
+        <div id="today-items" class="chips"></div>
+        <p id="today-note" class="small-note"></p>
+      </article>
+      <section class="next-section">
+        <div class="section-heading"><h2>次の収集日</h2><span>この先の予定</span></div>
+        <div id="next-list" class="next-list"></div>
+      </section>
+      <div class="quick-actions">
+        <button class="action action-yellow" data-screen="search"><span>🔎</span><b>これって何ゴミ？</b><small>品名から分別を検索</small></button>
+        <button class="action action-pink" data-screen="calendar"><span>🗓️</span><b>収集カレンダー</b><small>月ごとの予定を確認</small></button>
+      </div>
+      <aside class="notice"><strong>⏰ 朝8時までに出そう</strong><p>ごみ・資源は原則として収集日の朝8時までに出してください。特別収集日・祝日等の変更は公式情報を確認してください。</p></aside>
+    </section>
+
+    <section id="calendar" class="screen">
+      <div class="page-title"><p class="eyebrow">MONTH VIEW</p><h2>収集カレンダー</h2></div>
+      <div class="month-nav"><button id="prev-month" aria-label="前月">‹</button><h3 id="month-label"></h3><button id="next-month" aria-label="翌月">›</button></div>
+      <div class="calendar-legend">
+        <span><i class="dot burn"></i>燃やすごみ</span><span><i class="dot resource"></i>資源</span><span><i class="dot other"></i>陶器・ガラス・金属</span>
+      </div>
+      <div class="calendar-grid" id="calendar-grid" aria-label="月間カレンダー"></div>
+      <div id="selected-day" class="selected-day"><p class="muted">日付をタップすると、その日の収集予定が表示されます。</p></div>
+      <aside class="notice warning"><strong>📌 特別日程について</strong><p>このカレンダーは通常の曜日設定を表示します。祝日・年末年始などの特別収集日を自動取得していないため、変更の可能性がある日は品川区の公式情報も確認してください。</p></aside>
+    </section>
+
+    <section id="search" class="screen">
+      <div class="page-title"><p class="eyebrow">SORTING GUIDE</p><h2>これって何ゴミ？</h2><p class="intro">品名を入力。公式情報に登録された品目だけを案内します。</p></div>
+      <label class="searchbox"><span>🔎</span><input id="search-input" type="search" placeholder="例：はさみ、ペットボトル" autocomplete="off"><button id="clear-search" aria-label="検索をクリア">×</button></label>
+      <p class="subheading">すぐ使える検索例</p>
+      <div id="shortcuts" class="shortcut-list"></div>
+      <div id="search-results" class="search-results"><p class="muted">品名を入力するか、検索例をタップしてください。</p></div>
+      <aside class="official-links">
+        <h3>公式情報を確認する</h3>
+        <a href="https://www.city.shinagawa.tokyo.jp/PC/kankyo/kankyo-gomi/20191127174730.html" target="_blank" rel="noopener">品目一覧 ↗</a>
+        <a href="https://www.city.shinagawa.tokyo.jp/PC/kankyo/kankyo-gomi/gomi-kateigomi/gomi-kateigomi-dashikata/hpg000005617.html" target="_blank" rel="noopener">分け方・出し方 ↗</a>
+        <a href="https://www.city.shinagawa.tokyo.jp/PC/kankyo/kankyo-gomi/20200929091450.html" target="_blank" rel="noopener">ごみ・資源Q&A ↗</a>
+      </aside>
+    </section>
+
+    <section id="about" class="screen">
+      <div class="page-title"><p class="eyebrow">ABOUT THIS APP</p><h2>このアプリについて</h2></div>
+      <div class="info-card">
+        <h3>対象地域</h3><p>東京都品川区 二葉4丁目</p>
+        <h3>通常の収集曜日</h3>
+        <ul><li>燃やすごみ：毎週 水・土</li><li>資源：毎週 木</li><li>陶器・ガラス・金属ごみ：第2・第4 月</li></ul>
+        <h3>データについて</h3><p>収集曜日は品川区公式一覧をもとに設定しています。品目データは登録済みの項目のみ検索できます。公式一覧にない品目については、分別を推測しません。</p>
+        <p class="data-date">公式情報確認日：2026年10月19日（収集曜日・一部品目を確認）</p>
+        <p class="warning-text">特別収集日を自動取得する機能はありません。祝日・年末年始は公式サイトで最新情報を確認してください。</p>
+        <a href="https://www.city.shinagawa.tokyo.jp/PC/kankyo/kankyo-gomi/gomi-kateigomi/wastedayslist/list_ha.html" target="_blank" rel="noopener">二葉の収集曜日一覧 ↗</a>
+      </div>
+    </section>
+  </main>
+  <nav class="bottom-nav" aria-label="メインメニュー">
+    <button class="nav-item active" data-screen="home"><span>⌂</span><small>ホーム</small></button>
+    <button class="nav-item" data-screen="calendar"><span>▦</span><small>カレンダー</small></button>
+    <button class="nav-item" data-screen="search"><span>⌕</span><small>分別検索</small></button>
+    <button class="nav-item" data-screen="about"><span>ⓘ</span><small>アプリ情報</small></button>
+  </nav>
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
